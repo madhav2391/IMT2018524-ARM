@@ -4,20 +4,23 @@
 
     AREA    appcode, CODE, READONLY
     EXPORT __main
+    IMPORT printMsg
     ENTRY
 
 __main FUNCTION
-    MOV R1,#0;
-    MOV R2,#1;
-    MOV R3,#10; loop variable
+    MOV R7,#0;
+    MOV R8,#1;
+    MOV R6,#10; loop variable
 
-fibo CMP R3, #0
+fibo CMP R6, #0 ; loop will be printing from second element hence here we get values from fib(2) to fib(11) both inclusive
     BLE STOP
 
-    ADD R2,R2,R1;
-    SUB R1,R2,R1;
+    ADD R8,R8,R7;
+    MOV R0,R8
+    BL printMsg
+    SUB R7,R8,R7;
 
-    SUB R3,#1;
+    SUB R6,#1;
 
     B fibo
 
